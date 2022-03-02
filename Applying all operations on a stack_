@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 100
+int top=-1;
+int stack[MAX];
+void push(int ITEM)
+{
+    if(top==MAX-1)
+    {
+        printf("OVERFLOW");
+        return;
+    }
+    top++;
+    stack[top]=ITEM;
+}
+int pop()
+{
+    int data;
+    if(top==-1)
+    {
+        printf("UNDERFLOW");
+        return NULL;
+    }
+    data=stack[top];
+    top--;
+    return data;
+}
+int PEEK()
+{
+    if(top==-1)
+    {
+        printf("UNDERFLOW");
+        return NULL;
+    }
+    return stack[top];
+}
+int main()
+{
+    int ITEM, choice;
+    while(1)
+    {
+        printf("\t\t MENU \t\n");
+        printf("\t1. Push\n\t2. Pop\n\t3. Peek\n\t4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1: printf("\nEnter value to be inserted: ");
+                    scanf("%d",&ITEM);
+                    push(ITEM);
+                    break;
+            case 2: ITEM=pop();
+                    printf("The deleted element is: %d",ITEM);
+                    break;
+            case 3: ITEM=PEEK();
+                    printf("The top element of the stack is: %d",ITEM);
+                    break;
+            case 4: exit(0);
+            default:
+                    printf("\n\t*Enter a valid choice*\n");
+        }
+    }
+}
