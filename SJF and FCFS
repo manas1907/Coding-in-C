@@ -1,0 +1,53 @@
+#include <stdio.h>
+void main()
+{
+    int n;
+    printf("Enter number of process you want to perform: ");
+    scanf("%d",&n);
+    int bt[n], pr_id[n];
+    int temp1, temp2, i, j, flag, sum=0;
+    printf("Enter burst time and process id: \n");
+    for(i=0;i<n;i++)
+    {
+        printf("Burst time: ");
+        scanf("%d",&bt[i]);
+        printf("Process id: ");
+        scanf("%d",&pr_id[i]);
+    }
+    printf("S no.\tProcess id\tBurst Time\t\n");
+    for(i=0;i<n;i++)
+    {
+        printf("%d\t%d\t\t  %d\t\n",i+1,pr_id[i],bt[i]);
+    }
+    for(i=0;i<n-1;i++)
+    {
+        flag=0;
+        for(j=0;j<n-i-1;j++)
+        {
+            if(bt[j]>bt[j+1])
+            {
+                bt[i]=temp1;
+                pr_id[i]=temp2;
+                bt[i]=bt[j+1];
+                bt[j+1]=temp1;
+                pr_id[i]=pr_id[j+1];
+                pr_id[j+1]=temp2;
+                flag=1;
+            }
+        }
+        if(flag==0)
+            break;
+    }
+    printf("S no.\tProcess id\tBurst Time\t\n");
+    for(i=0;i<n;i++)
+    {
+        printf("%d\t%d\t\t  %d\t\n",i+1,pr_id[i],bt[i]);
+    }
+    float avg_time;
+    for(i=0;i<n;i++)
+    {
+        sum+=bt[i];
+    }
+    avg_time=sum/n;
+    printf("Average completion time: %f",avg_time);
+}
