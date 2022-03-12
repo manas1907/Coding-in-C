@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MAX 100
+int top=-1;
+int stack[MAX];
+void push(int ITEM)
+{
+    if(top==MAX-1)
+    {
+        printf("OVERFLOW");
+        return;
+    }
+    top++;
+    stack[top]=ITEM;
+}
+int pop()
+{
+    int data;
+    if(top==-1)
+    {
+        printf("UNDERFLOW");
+        return NULL;
+    }
+    data=stack[top];
+    top--;
+    return data;
+}
+int main()
+{
+    int ITEM;
+    char str[] = "Manas";
+    int n = strlen(str);
+    for(int i=0;i<n;i++)
+    {
+        push(str[i]);
+    }
+    for(int i=0;i<n;i++)
+    {
+        str[i]=pop(str[i]);
+    }
+    printf("Reversed string is %s\n", str);
+}
