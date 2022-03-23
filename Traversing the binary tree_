@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <stdlib.h>
+int a,b,c,d,e,f,z;
+
+struct node {
+  int item;
+  struct node* left;
+  struct node* right;
+};
+//Creating and allocating the memory of the node
+struct node* createNode(int z)
+{
+  //int createNode(value);
+  struct node* newNode = malloc(sizeof(struct node));
+  newNode->item = z;
+  newNode->left = NULL;
+  newNode->right = NULL;
+
+  return newNode;
+};
+void inorderTraversal(struct node* root) //inorderTraversal
+{                                          
+  if (root == NULL) return;
+  inorderTraversal(root->left);
+  printf("%d ->", root->item);
+  inorderTraversal(root->right);
+}
+void preorderTraversal(struct node* root) //preorderTraversal
+{
+    if(root== NULL) return;
+    printf("%d ->", root->item);
+    preorderTraversal(root-> left);
+    preorderTraversal(root-> right);
+}
+void postorderTraversal(struct node* root) //postorderTraversal
+{
+  if (root == NULL) return;
+  postorderTraversal(root->left);
+  postorderTraversal(root->right);
+  printf("%d ->", root->item);
+}
+// Insert on the left of the node
+struct node* insertLeft(struct node* root, int value) 
+{
+  root->left = createNode(value);
+  return root->left;
+};
+
+// Insert on the right of the node
+struct node* insertRight(struct node* root, int value) 
+{
+  root->right = createNode(value);
+  return root->right;
+};
+int main() 
+{
+  int a=0,b=0,c=0,d=0,e=0,f=0,z=0;
+  //struct node* root = createNode(z);
+  printf("The value  root is: \n");
+  scanf("%d",&z);
+  struct node* root = createNode(z);
+  insertLeft(root, a);
+  printf("The value of left of root is: \n");
+  scanf("%d",&a);
+  printf("The value of right of root is: \n");
+  scanf("%d",&b);
+  insertRight(root, b);
+
+  printf("The value of left of rootleft is: \n");
+  scanf("%d",&c);
+  insertLeft(root->left, c);
+  printf("The value of right of rootleft is: \n");
+  scanf("%d",&d);
+  insertRight(root->left, d);
+  
+  printf("The value of left of rootright is: \n");
+  scanf("%d",&e);
+  insertLeft(root->right, e);
+  printf("The value of right of rootright is: \n");
+  scanf("%d",&f);
+  insertRight(root->right, f);
+  
+  printf("Inorder traversal:\n");
+  inorderTraversal(root);
+  
+  printf("\nPreorder traversal: \n");
+  preorderTraversal(root);
+
+  printf("\nPostorder traversal: \n");
+  postorderTraversal(root);
+  
+  return 0;
+}
