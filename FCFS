@@ -1,0 +1,32 @@
+#include<stdio.h>
+#define max 25
+void main(){
+    int i,j,n,bt[max],at[max],tat[max],temp[max],wt[max];
+    float awt,atat;
+   
+    printf("Enter the number of processes: ");
+    scanf("%d",&n);
+    printf("Burst time of all processes: ");
+    for(int i=0;i<n;i++)
+        scanf("%d",&bt[i]);
+    printf("Arrival time of all processes: ");
+    for(int i=0;i<n;i++)
+        scanf("%d",&at[i]);
+    temp[0]=0;
+    printf("Processes\t Burst Time\t Arrival Time\t Waiting Time\t TurnAround Time\n");
+    for(int i=0;i<n;i++){
+        wt[i]=0;
+        tat[i]=0;
+        temp[i+1]=temp[i] + bt[i];
+        wt[i]=temp[i] - at[i];
+        tat[i]=bt[i] + wt[i];
+        awt=awt + wt[i];
+        atat=atat+tat[i];
+        printf("%d\t\t  %d\t\t  %d\t\t  %d\t\t  %d\n",i+1,bt[i],at[i],wt[i],tat[i]);
+    }
+    awt=awt/n;
+    atat=atat/n;
+    printf("The Average Waiting Time = %f\n",awt);
+    printf("The Average TurnAround Time = %f",atat);
+
+}
