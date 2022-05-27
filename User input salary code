@@ -1,0 +1,22 @@
+#include<stdio.h>
+int main()
+{
+ float bs, da, hr, gs;      
+printf("Enter bs: ");   
+scanf("%f",&bs);
+printf("Enter da: ");   
+scanf("%f",&da);
+printf("Enter hr: ");   
+scanf("%f",&hr);
+
+
+
+gs= bs + da + hr;
+    
+printf("\nBasic Salary: %f\n",  bs);
+printf("Dearness Allowance: %f\n", da);
+printf("House Rent: %f\n", hr);
+printf("Gross Salary: %f\n",gs);
+
+return 0;
+}
